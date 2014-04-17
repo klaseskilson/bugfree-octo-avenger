@@ -1,12 +1,85 @@
 // get that bootstrap
 @import "../bootstrap/bootstrap.less";
+@import "./fonts.less";
 
-@bgcolor: #555;
+// Variables
+@insert-columns-sm: 3;
+@icon-font-path: './fonts/';
+@headings-font-weight: 'bold';
+@font-size-base: 15px;
 
+/* body */
 body {
-	background-color: @bgcolor;
+	font-family: 'Quicksand', sans-serif;
 
-	p {
-		color: blue;
+
+	/* headers */
+	h2, h3, h4, h5, h6 {
+		&.section {
+			border-bottom: 1px solid @gray-lighter;
+			text-transform: uppercase;
+		}
 	}
+}
+
+/* general wrapper, uses bootstrap's container class */
+.wrapper {
+	.container();
+}
+#main {
+	.row();
+}
+
+/* styles for the main part of the body */
+#insert {
+	.make-sm-column(@insert-columns-sm);
+}
+#results {
+	.make-sm-column(@grid-columns - @insert-columns-sm);
+
+	#title {
+		.row();
+
+		.title {
+			.make-sm-column(8);
+		}
+		.search {
+			.make-sm-column(4);
+		}
+	}
+}
+
+/* input */
+input, button {
+	.form-control();
+}
+button, input[type="submit"] {
+	.btn();
+	.btn-primary();
+	.btn-block();
+
+	text-transform: uppercase;
+	font-size: @font-size-small;
+	font-weight: bold;
+}
+
+/* the podium */
+table[data-order="time"][data-reverse="false"] {
+	/* First position! */
+	tr:nth-child(1) td{
+		.bg-success();
+		font-size: @font-size-h3;
+	}
+	/* Second position! */
+	tr:nth-child(2) td{
+		.bg-info();
+		font-size: @font-size-h4;
+	}
+	/* Third position! */
+	tr:nth-child(3) td{
+		.bg-warning();
+	}
+}
+table tr th span{
+	// .pull-right();
 }
