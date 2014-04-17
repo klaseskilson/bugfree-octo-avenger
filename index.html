@@ -20,7 +20,7 @@
         <link rel="stylesheet/less" href="css/src/style.less" type="text/css" />
         <script src="script/libs/less.min.js"></script>
     </head>
-    <body ng-app="">
+    <body ng-app="bugfree">
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser.
             Please <a href="http://browsehappy.com/">upgrade your browser</a> or
@@ -34,7 +34,7 @@
             </h1>
         </header>
         <main class="wrapper">
-            <div id="main" ng-controller="Ctrl">
+            <div id="main" ng-controller="Result">
                 <div id="insert">
                     <h3 class="section">Ny tävlande</h3>
 
@@ -51,13 +51,16 @@
                             </label>
                             <input type="text" placeholder="Efternamn" id="last_name" ng-model="last_name" required>
                         </p> <!-- end .form-group -->
-                        <p class="form-group">
-                            <label for="time">
+                        <div class="form-group" id="time">
+                            <label for="time_hh">
                                 Sluttid
                             </label>
-                            <input type="text" placeholder="T.ex. 3:02:54" id="time" ng-model="time" required
-                                pattern="^(([0-9]|[1-9][0-9]|[1-9][0-9][0-9])[:][0-5][0-9][:][0-5][0-9])$">
-                        </p> <!-- end .form-group -->
+                            <div class="input-group">
+                                <input type="number" ng-model="time_hh" id="time_hh" placeholder="HH" min="0" required>
+                                <input type="number" ng-model="time_mm" id="time_mm" placeholder="MM" min="0" max="59" required>
+                                <input type="number" ng-model="time_ss" id="time_ss" placeholder="SS" min="0" max="59" required>
+                            </div>
+                        </div> <!-- end .form-group -->
                         <p>
                             <button>
                                 <span class="glyphicon glyphicon-plus-sign"></span> Lägg till tävlande!
@@ -72,7 +75,7 @@
                         </div>
                         <div class="search">
                             <p>
-                                <input type="search" ng-model="q" placeholder="Filtrera resultat...">
+                                <input type="search" ng-model="search" placeholder="Filtrera resultat...">
                             </p>
                         </div>
                     </div>
@@ -109,11 +112,13 @@
                             </thead>
 
                             <tbody>
-                                <tr ng-repeat="entry in entries | orderBy:predicate:reverse | filter:q">
+                                <tr ng-repeat="entry in entries | orderBy:(predicate == 'time' ? ['time.hh', 'time.mm', 'time.ss']: predicate):reverse | filter:search">
                                     <td>{{$index + 1}}</td>
                                     <td>{{entry.first_name}}</td>
                                     <td>{{entry.last_name}}</td>
-                                    <td>{{entry.time}}</td>
+                                    <td>
+                                        {{entry.time | prettyTime}}
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
