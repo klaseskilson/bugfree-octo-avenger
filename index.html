@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Project Name</title>
+        <title>Bugfree octo-avenger</title>
         <meta name="description" content="">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
@@ -18,18 +18,117 @@
 
         <!-- CSS files -->
         <link rel="stylesheet/less" href="css/src/style.less" type="text/css" />
+        <script src="script/libs/less.min.js"></script>
     </head>
-    <body>
+    <body ng-app="">
         <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser.
+            Please <a href="http://browsehappy.com/">upgrade your browser</a> or
+            <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
+            to improve your experience.</p>
         <![endif]-->
 
-        <p>Hello world! This is HTML5 Boilerplate.</p>
+        <header class="wrapper">
+            <h1>
+                Bugfree octo-avenger
+            </h1>
+        </header>
+        <main class="wrapper">
+            <div id="main" ng-controller="Ctrl">
+                <div id="insert">
+                    <h3 class="section">Ny tävlande</h3>
+
+                    <form ng-submit="addEntry()">
+                        <p class="form-group">
+                            <label for="first_name">
+                                Förnamn
+                            </label>
+                            <input type="text" placeholder="Förnamn" id="first_name" ng-model="first_name" required>
+                        </p> <!-- end .form-group -->
+                        <p class="form-group">
+                            <label for="last_name">
+                                Efternamn
+                            </label>
+                            <input type="text" placeholder="Efternamn" id="last_name" ng-model="last_name" required>
+                        </p> <!-- end .form-group -->
+                        <p class="form-group">
+                            <label for="time">
+                                Sluttid
+                            </label>
+                            <input type="text" placeholder="T.ex. 3:02:54" id="time" ng-model="time" required
+                                pattern="^(([0-9]|[1-9][0-9]|[1-9][0-9][0-9])[:][0-5][0-9][:][0-5][0-9])$">
+                        </p> <!-- end .form-group -->
+                        <p>
+                            <button>
+                                <span class="glyphicon glyphicon-plus-sign"></span> Lägg till tävlande!
+                            </button>
+                        </p>
+                    </form>
+                </div>
+                <div id="results">
+                    <div id="title">
+                        <div class="title">
+                            <h3 class="section">Resultat</h3>
+                        </div>
+                        <div class="search">
+                            <p>
+                                <input type="search" ng-model="q" placeholder="Filtrera resultat...">
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover" data-order="{{predicate}}" data-reverse="{{reverse}}">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        &nbsp;
+                                    </th>
+                                    <th>
+                                        <a href="" ng-click="predicate = 'first_name'; reverse=!reverse">
+                                            <span ng-show="predicate == 'first_name';"
+                                                class="glyphicon glyphicon-sort-by-alphabet{{reverse == true ? '-alt' : ''}}"></span>
+                                            Förnamn
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a href="" ng-click="predicate = 'last_name'; reverse=!reverse">
+                                            <span ng-show="predicate == 'last_name';"
+                                                class="glyphicon glyphicon-sort-by-alphabet{{reverse == true ? '-alt' : ''}}"></span>
+                                            Efternamn
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a href="" ng-click="predicate = 'time'; reverse=!reverse">
+                                            <span ng-show="predicate == 'time';"
+                                                class="glyphicon glyphicon-sort-by-order{{reverse == true ? '-alt' : ''}}"></span>
+                                            Sluttid
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr ng-repeat="entry in entries | orderBy:predicate:reverse | filter:q">
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{entry.first_name}}</td>
+                                    <td>{{entry.last_name}}</td>
+                                    <td>{{entry.time}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="wrapper">
+
+        </footer>
 
         <!-- JavaScript libraries -->
         <script src="script/libs/angular.min.js"></script>
+        <script src="script/libs/jquery.min.js"></script>
         <script src="script/libs/bootstrap.min.js"></script>
-        <script src="script/libs/less.min.js"></script>
         <!-- Javascripts -->
         <script src="script/main.js"></script>
     </body>
