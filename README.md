@@ -24,16 +24,16 @@ to the `entries` array. Reset resets the form.
 The filter `prettyTime` displays the object sent to it as a time in the form
 `H:MM.SS`, with leading zeroes.
 
-The app largely uses the power in AngularJS templating. 
+The app largely uses the power in AngularJS templating.
 
 ### The entries
 Each entry object contains the following data:
 * `first_name`
 * `last name_name`
 * `time` the end time, object
-	* `time_hh`
-	* `time_mm`
-	* `time_ss`
+	* `hh`
+	* `mm`
+	* `ss`
 
 ### Folders
 The file file structure for this repo:
