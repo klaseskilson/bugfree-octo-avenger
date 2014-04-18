@@ -75,7 +75,7 @@
                         </div> <!-- end .form-group -->
                         <div class="form-group">
                             <button ng-disabled="entryForm.$invalid">
-                                <span class="glyphicon glyphicon-plus-sign"></span>
+                                <span class="glyphicon glyphicon-{{entryForm.$invalid ? 'exclamation' : 'plus'}}-sign"></span>
                                 {{entryForm.$invalid ? 'Fill out the form' : 'Add runner!'}}
                             </button>
                         </div>
