@@ -84,9 +84,9 @@
                         <table class="table table-hover" data-order="{{predicate}}" data-reverse="{{reverse}}">
                             <thead>
                                 <tr>
-                                    <th>
+                                    <!-- <th>
                                         &nbsp;
-                                    </th>
+                                    </th> -->
                                     <th>
                                         <a href="" ng-click="predicate = 'first_name'; reverse=!reverse">
                                             <span ng-show="predicate == 'first_name';"
@@ -112,8 +112,8 @@
                             </thead>
 
                             <tbody>
-                                <tr ng-repeat="entry in entries | orderBy:(predicate == 'time' ? ['time.hh', 'time.mm', 'time.ss']: predicate):reverse | filter:search">
-                                    <td>{{$index + 1}}</td>
+                                <tr ng-repeat="entry in entries | orderBy:(predicate == 'time' ? ['time.hh', 'time.mm', 'time.ss'] : predicate):reverse | filter:search">
+                                    <!-- <td>{{$index + 1}}</td> -->
                                     <td>{{entry.first_name}}</td>
                                     <td>{{entry.last_name}}</td>
                                     <td>
