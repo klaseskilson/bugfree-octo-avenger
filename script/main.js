@@ -1,5 +1,4 @@
-var app = angular.module('bugfree', [])
-
+angular.module('bugfree', [])
 .controller('Result', function ($scope) {
     $scope.entries =
         [{first_name:'John', last_name:'Klasson', time:{hh: 1, mm: 1, ss: 1}},
@@ -11,33 +10,35 @@ var app = angular.module('bugfree', [])
     $scope.reverse = false;
 
     $scope.addEntry = function () {
-    	// create new entry
-    	var obj = {
-    		first_name: $scope.first_name,
-    		last_name: $scope.last_name,
-    		time: {
-    			hh: $scope.time_hh,
-    			mm: $scope.time_mm,
-    			ss: $scope.time_ss
-    		}
-    	};
-    	// push to entries
-    	$scope.entries.push(obj);
-    	// emtpy fields
-    	$scope.first_name = '';
-    	$scope.last_name = '';
-    	$scope.time_hh = '';
-    	$scope.time_mm = '';
-    	$scope.time_ss = '';
+        // create new entry
+        var obj = {
+            first_name: $scope.first_name,
+            last_name: $scope.last_name,
+            time: {
+                hh: $scope.time_hh,
+                mm: $scope.time_mm,
+                ss: $scope.time_ss
+            }
+        };
+        {
+            // push to entries
+            $scope.entries.push(obj);
+            // emtpy fields
+            $scope.first_name = '';
+            $scope.last_name = '';
+            $scope.time_hh = '';
+            $scope.time_mm = '';
+            $scope.time_ss = '';
+        }
     };
 })
 .filter('prettyTime', function () {
-	// not sure filter is the best way to do this
-	return function (n) {
-		var hh = n.hh,
-			mm = n.mm,
-			ss = n.ss;
+    // not sure filter is the best way to do this
+    return function (n) {
+        var hh = n.hh,
+            mm = n.mm,
+            ss = n.ss;
 
-		return (hh) + ':' + (parseInt(mm, 10) > 9 ? mm : '0' + mm) + ':' + (parseInt(ss, 10) > 9 ? ss : '0' + ss);
-	};
+        return (hh) + ':' + (parseInt(mm, 10) > 9 ? mm : '0' + mm) + ':' + (parseInt(ss, 10) > 9 ? ss : '0' + ss);
+    };
 });;
