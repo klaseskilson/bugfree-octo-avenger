@@ -20,11 +20,19 @@ body {
 			text-transform: uppercase;
 		}
 	}
+	h3.section {
+		font-size: @font-size-h3 * 0.8;
+	}
 }
 
 /* general wrapper, uses bootstrap's container class */
 .wrapper {
 	.container();
+}
+#header {
+	p {
+		.lead();
+	}
 }
 #main {
 	.row();
@@ -47,7 +55,7 @@ body {
 			.make-sm-column(4);
 
 			input {
-				margin-top: 19px;
+				margin-top: 14px;
 				.input-sm();
 			}
 		}
@@ -57,7 +65,15 @@ body {
 /* input */
 input, button {
 	.form-control();
+
+	/* angular validation classes */
+	&.ng-invalid:not(.ng-pristine) {
+		border-color: #a94442;
+		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	}
 }
+/* buttons! */
 button, input[type="submit"] {
 	.btn();
 	.btn-primary();
@@ -67,6 +83,7 @@ button, input[type="submit"] {
 	font-size: @font-size-small;
 	font-weight: bold;
 }
+/* time input group */
 #time input {
 	width: 100% / 3;
 	float: left;
@@ -76,19 +93,25 @@ button, input[type="submit"] {
 table[data-order="time"][data-reverse="false"] {
 	/* First position! */
 	tr:nth-child(1) td{
-		.bg-success();
+		background-color: rgb(255, 173, 0);
 		font-size: @font-size-h3;
+		color: white;
 	}
 	/* Second position! */
 	tr:nth-child(2) td{
-		.bg-info();
+		background-color: silver;
 		font-size: @font-size-h4;
+		color: white;
 	}
 	/* Third position! */
 	tr:nth-child(3) td{
-		.bg-warning();
+		background-color: #FF843F;
+		color: white;
 	}
 }
-table tr th span{
-	// .pull-right();
+
+/* overwrite the ng-hide class */
+.ng-hide {
+	display: inline-block !important;
+	opacity: 0;
 }

@@ -28,54 +28,68 @@
             to improve your experience.</p>
         <![endif]-->
 
-        <header class="wrapper">
+        <header class="wrapper" id="header">
             <h1>
                 Bugfree octo-avenger
             </h1>
+            <p>
+                Welcome! Here, we keep track of all the competitors at the Vint run. Add all the awesome runners, and
+                compare their results.
+            </p>
         </header>
         <main class="wrapper">
             <div id="main" ng-controller="Result">
                 <div id="insert">
-                    <h3 class="section">Ny tävlande</h3>
+                    <h3 class="section">New competitor</h3>
 
-                    <form ng-submit="addEntry()">
-                        <p class="form-group">
-                            <label for="first_name">
-                                Förnamn
+                    <form ng-submit="addEntry()" name="entryForm" novalidate>
+                        <div class="form-group">
+                            <label for="first_name" class="control-label">
+                                First name
                             </label>
-                            <input type="text" placeholder="Förnamn" id="first_name" ng-model="first_name" required>
-                        </p> <!-- end .form-group -->
-                        <p class="form-group">
-                            <label for="last_name">
-                                Efternamn
+                            <input type="text" placeholder="First name" id="first_name" ng-model="first_name"
+                                ng-required="true" ng-minlength="1" required>
+                        </div> <!-- end .form-group -->
+                        <div class="form-group">
+                            <label for="last_name" class="control-label">
+                                Last name
                             </label>
-                            <input type="text" placeholder="Efternamn" id="last_name" ng-model="last_name" required>
-                        </p> <!-- end .form-group -->
+                            <input type="text" placeholder="Last time" id="last_name" ng-model="last_name"
+                                ng-required="true" ng-minlength="1" required>
+                        </div> <!-- end .form-group -->
                         <div class="form-group" id="time">
-                            <label for="time_hh">
-                                Sluttid
+                            <label for="time_hh" class="control-label">
+                                End time
                             </label>
                             <div class="input-group">
-                                <input type="number" ng-model="time_hh" id="time_hh" placeholder="HH" min="0" required>
-                                <input type="number" ng-model="time_mm" id="time_mm" placeholder="MM" min="0" max="59" required>
-                                <input type="number" ng-model="time_ss" id="time_ss" placeholder="SS" min="0" max="59" required>
+                                <label class="sr-only" for="time_hh">Hours</label>
+                                <input type="number" ng-model="time_hh" id="time_hh" placeholder="HH" min="0"
+                                    ng-required="true" required>
+                                <label class="sr-only" for="time_mm">Minutes</label>
+                                <input type="number" ng-model="time_mm" id="time_mm" placeholder="MM" min="0" max="59"
+                                    ng-required="true" required>
+                                <label class="sr-only" for="time_ss">Seconds</label>
+                                <input type="number" ng-model="time_ss" id="time_ss" placeholder="SS" min="0" max="59"
+                                    ng-required="true" required>
                             </div>
                         </div> <!-- end .form-group -->
-                        <p>
-                            <button>
-                                <span class="glyphicon glyphicon-plus-sign"></span> Lägg till tävlande!
+                        <div class="form-group">
+                            <button ng-disabled="entryForm.$invalid">
+                                <span class="glyphicon glyphicon-plus-sign"></span>
+                                {{entryForm.$invalid ? 'Fill out the form' : 'Add runner!'}}
                             </button>
-                        </p>
+                        </div>
                     </form>
                 </div>
+
                 <div id="results">
                     <div id="title">
                         <div class="title">
-                            <h3 class="section">Resultat</h3>
+                            <h3 class="section">Results</h3>
                         </div>
                         <div class="search">
                             <p>
-                                <input type="search" ng-model="search" placeholder="Filtrera resultat...">
+                                <input type="search" ng-model="search" placeholder="Filter result...">
                             </p>
                         </div>
                     </div>
@@ -89,23 +103,23 @@
                                     </th> -->
                                     <th>
                                         <a href="" ng-click="predicate = 'first_name'; reverse=!reverse">
-                                            <span ng-show="predicate == 'first_name';"
-                                                class="glyphicon glyphicon-sort-by-alphabet{{reverse == true ? '-alt' : ''}}"></span>
-                                            Förnamn
+                                            First name
+                                            <span ng-show="predicate == 'first_name'"
+                                                class="glyphicon glyphicon-chevron-{{reverse == false ? 'down' : 'up'}}"></span>
                                         </a>
                                     </th>
                                     <th>
                                         <a href="" ng-click="predicate = 'last_name'; reverse=!reverse">
-                                            <span ng-show="predicate == 'last_name';"
-                                                class="glyphicon glyphicon-sort-by-alphabet{{reverse == true ? '-alt' : ''}}"></span>
-                                            Efternamn
+                                            Last name
+                                            <span ng-show="predicate == 'last_name'"
+                                                class="glyphicon glyphicon-chevron-{{reverse == false ? 'down' : 'up'}}"></span>
                                         </a>
                                     </th>
                                     <th>
                                         <a href="" ng-click="predicate = 'time'; reverse=!reverse">
-                                            <span ng-show="predicate == 'time';"
-                                                class="glyphicon glyphicon-sort-by-order{{reverse == true ? '-alt' : ''}}"></span>
-                                            Sluttid
+                                            End time
+                                            <span ng-show="predicate == 'time'"
+                                                class="glyphicon glyphicon-chevron-{{reverse == false ? 'down' : 'up'}}"></span>
                                         </a>
                                     </th>
                                 </tr>
