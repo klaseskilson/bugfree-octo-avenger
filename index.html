@@ -10,17 +10,22 @@
         <meta name="description" content="">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta http-equiv="cleartype" content="on">
 
         <!--
-        CSS files. Currently less beeing rendered on the run. If you want vanilla
+        CSS files. Can be beeing rendered on the run using LESS. If you want vanilla
         css files, in the root of this repo, run
             lessc css/src/style.less > css/style.css
         and link to the css file instead of the less file. Bootstrap will be included.
-        -->
+        Before using Less on the run, consider the fact that it's slow, and produces
+        A LOT of http calls.
+
         <link rel="stylesheet/less" href="css/src/style.less" type="text/css" />
         <script src="script/libs/less.min.js"></script>
+        -->
+
+        <link rel="stylesheet" href="css/style.css" type="text/css" />
     </head>
     <body ng-app="bugfree">
         <!--[if lt IE 7]>
