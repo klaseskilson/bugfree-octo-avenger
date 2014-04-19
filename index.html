@@ -13,10 +13,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="cleartype" content="on">
 
-        <!-- Browser favicon -->
-        <link rel="shortcut icon" href="favicon.png">
-
-        <!-- CSS files -->
+        <!--
+        CSS files. Currently less beeing rendered on the run. If you want vanilla
+        css files, in the root of this repo, run
+            lessc css/src/style.less > css/style.css
+        and link to the css file instead of the less file. Bootstrap will be included.
+        -->
         <link rel="stylesheet/less" href="css/src/style.less" type="text/css" />
         <script src="script/libs/less.min.js"></script>
     </head>
@@ -28,14 +30,16 @@
             to improve your experience.</p>
         <![endif]-->
 
-        <header class="wrapper" id="header">
-            <h1>
-                Bugfree octo-avenger
-            </h1>
-            <p>
-                Welcome! Here, we keep track of the competitors at the Vint run. Add all the awesome runners and
-                compare their results.
-            </p>
+        <header id="header">
+            <div class="wrapper">
+                <h1>
+                    Bugfree octo-avenger
+                </h1>
+                <p>
+                    Welcome! We keep track of the competitors at the Vint run. Add all the awesome runners and
+                    compare their results.
+                </p>
+            </div>
         </header>
         <main class="wrapper">
             <div id="main" ng-controller="Result">
@@ -126,11 +130,16 @@
                             </thead>
 
                             <tbody>
+                                <!--
+                                Display results, and order by the predicate var. If ordered by time,
+                                hours comes first, then minutes, then seconds.
+                                -->
                                 <tr ng-repeat="entry in entries | orderBy:(predicate == 'time' ? ['time.hh', 'time.mm', 'time.ss'] : predicate):reverse | filter:search">
                                     <!-- <td>{{$index + 1}}</td> -->
                                     <td>{{entry.first_name}}</td>
                                     <td>{{entry.last_name}}</td>
                                     <td>
+                                        <!-- Display time with the the filter PrettyTime. -->
                                         {{entry.time | prettyTime}}
                                     </td>
                                 </tr>
@@ -140,15 +149,10 @@
                 </div>
             </div>
         </main>
-        <footer class="wrapper">
-
-        </footer>
 
         <!-- JavaScript libraries -->
-        <script src="script/libs/angular.min.js"></script><!--
-        <script src="script/libs/jquery.min.js"></script>
-        <script src="script/libs/bootstrap.min.js"></script> -->
-        <!-- Javascripts -->
+        <script src="script/libs/angular.min.js"></script>
+        <!-- Javascript -->
         <script src="script/main.js"></script>
     </body>
 </html>

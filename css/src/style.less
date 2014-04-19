@@ -1,26 +1,24 @@
-// get that bootstrap
+// Get external less files. Bootstrap and fonts!
 @import "../bootstrap/bootstrap.less";
 @import "./fonts.less";
 
-// Variables
-@insert-columns-sm: 3;
+// how broad do you want the add-form to be?
+@insert-columns-sm: 3; // out of 12
+// Replace bootstrap vars
 @icon-font-path: './fonts/';
 @headings-font-weight: 'bold';
 @font-size-base: 15px;
+@link-color: #8fa1b3;
+@brand-primary: @link-color;
 
 /* body */
 body {
 	font-family: 'Quicksand', sans-serif;
 
-
 	/* headers */
-	h2, h3, h4, h5, h6 {
-		&.section {
-			border-bottom: 1px solid @gray-lighter;
-			text-transform: uppercase;
-		}
-	}
 	h3.section {
+		border-bottom: 1px solid @gray-lighter;
+		text-transform: uppercase;
 		font-size: @font-size-h3 * 0.8;
 	}
 }
@@ -30,33 +28,38 @@ body {
 	.container();
 }
 #header {
+	background-color: #8fa1b3;
+	color: white;
 	p {
 		.lead();
+		max-width: 768px;
 	}
 }
+/* styles for the main part of the body */
 #main {
 	.row();
-}
 
-/* styles for the main part of the body */
-#insert {
-	.make-sm-column(@insert-columns-sm);
-}
-#results {
-	.make-sm-column(@grid-columns - @insert-columns-sm);
+	/* Left column! */
+	#insert {
+		.make-sm-column(@insert-columns-sm);
+	}
+	/* Right column! */
+	#results {
+		.make-sm-column(@grid-columns - @insert-columns-sm);
 
-	#title {
-		.row();
+		#title {
+			.row();
 
-		.title {
-			.make-sm-column(8);
-		}
-		.search {
-			.make-sm-column(4);
+			.title {
+				.make-sm-column(8);
+			}
+			.search {
+				.make-sm-column(4);
 
-			input {
-				margin-top: 14px;
-				.input-sm();
+				input {
+					margin-top: 14px;
+					.input-sm();
+				}
 			}
 		}
 	}
@@ -67,7 +70,8 @@ input, button {
 	.form-control();
 }
 /* buttons! */
-button, input[type="submit"] {
+button {
+	// button mixins!
 	.btn();
 	.btn-primary();
 	.btn-block();
@@ -109,7 +113,7 @@ table[data-order="time"][data-reverse="false"] {
 	}
 }
 
-/* overwrite the ng-hide class */
+/* overwrite the ng-hide class to prevent the annoying column jumping */
 .ng-hide {
 	display: inline-block !important;
 	opacity: 0;
