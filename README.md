@@ -7,6 +7,9 @@ end time.
 _"Det blir nice"_ was the words first used to describe this simple app. (Those three
 words are, as it turned out, a great way to describe the workflow while using Angular.)
 
+The app largely uses the power in AngularJS templating and the two-way data binding,
+which makes sure that the data is allways the same all over the app.
+
 #### Todo
 * Make the filter work for the end time.
 * Fix the column width so that it doesn't jump around when changing from the podium view.
@@ -18,13 +21,11 @@ using [Less CSS](http://lesscss.org), without any backend. I've tried to apply t
 
 ### The app
 The app is a angular module called `bugfree`. The controller `Result` handles the
-entries with the functions `addEntry`and `reset`. AddEntry pushes a new entry
+entries with the functions `addEntry` and `reset`. AddEntry pushes a new entry
 to the `entries` array. Reset resets the form.
 
 The filter `prettyTime` displays the object sent to it as a time in the form
-`H:MM.SS`, with leading zeroes.
-
-The app largely uses the power in AngularJS templating.
+`H:MM.SS`, with leading zeroes on the minutes and seconds.
 
 ### The entries
 Each entry object contains the following data:
@@ -35,8 +36,12 @@ Each entry object contains the following data:
 	* `mm`
 	* `ss`
 
+### The results
+The results are displayed using the `ng-repeat`-directive, and are ordered by the
+`OrderBy`-filter. The results can be filtered, based on name.
+
 ### Folders
-The file file structure for this repo:
+The file structure for this repo:
 * `css` all the css files!
 	* `css/src` all the less files that will be used to compile a static css file
 	* `css/bootstrap` all the bootstrap css files
@@ -54,7 +59,7 @@ Everyone is permitted to copy and distribute verbatim or modified
 copies of this license document, and changing it is allowed as long
 as the name is changed.
 
-DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE TERMS AND CONDITIONS
+FOR COPYING, DISTRIBUTION AND MODIFICATION
 
 0. You just DO WHAT THE FUCK YOU WANT TO.
