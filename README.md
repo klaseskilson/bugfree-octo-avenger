@@ -14,6 +14,7 @@ which makes sure that the data is allways the same all over the app.
 * Make the filter work for the end time.
 * Fix the column width so that it doesn't jump around when changing from the podium view.
 * Add some sort of session saving, and mayhaps a server backend.
+* Fix the [Good Ol' Font bug on Chrome for Windows](http://stackoverflow.com/questions/21018037/bad-font-rendering-chrome/21315724#21315724). Or wait until it gets fixed.
 
 ## Technical details
 It's a very simple web app. It uses [AngularJS](http://angularjs.org) and [Bootstrap CSS](http://getbootstrap.com)
