@@ -31,7 +31,7 @@ The filter `prettyTime` displays the object sent to it as a time in the form
 Each entry object contains the following data:
 * `first_name`
 * `last name_name`
-* `time` the end time, object
+* `time` the end time, object. Split up in order to enable it to be ordered correctly.
 	* `hh`
 	* `mm`
 	* `ss`
