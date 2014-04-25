@@ -8,7 +8,7 @@ _"Det blir nice"_ was the words first used to describe this simple app. (Those t
 words are, as it turned out, a great way to describe the workflow while using Angular.)
 
 The app largely uses the power in AngularJS templating and the two-way data binding,
-which makes sure that the data is allways the same all over the app.
+which makes sure that the data is always the same all over the app.
 
 #### Todo
 * Make the filter work for the end time.
